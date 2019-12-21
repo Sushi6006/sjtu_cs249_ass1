@@ -38,16 +38,20 @@ class GUI:
         # create windows
         self.main_page = MainPage(self.root, self)
         self.menu_page = MenuPage(self.root, self)
-        #TODO: self.insert_page =
+
+        # start
+        self.switch_page(self.main_page)
 
         # mainloop
         self.root.mainloop()
 
     #TODO: make original page optional?
     #TODO: a way to unpack whatever is packed?
-    def switch_page(self, original_page, new_page):
-        original_page.main_frame.pack_forget()
-        new_page.main_frame.pack()
+    def switch_page(self, new_page):
+        if self.current_frame:
+            self.current_frame.place_forget()
+        new_page.main_frame.place(relx=.5, rely=.5, anchor="c")
+        self.current_frame = new_page.main_frame
 
 
 class MainPage:
@@ -60,11 +64,11 @@ class MainPage:
         self.main_frame = Frame(self.root)
         self.title = Label(self.main_frame, text="THE FULL MARK HEAP SORT", font=GUI.FONT)
         self.start_button = Button(self.main_frame, text="Mark: 120%...? (Start)", command=self.start)
-        self.title.pack()
-        self.start_button.pack()
+        self.title.pack(pady=15)
+        self.start_button.pack(pady=15)
 
     def start(self):
-        self.gui_object.switch_page(self, self.gui_object.menu_page)
+        self.gui_object.switch_page(self.gui_object.menu_page)
 
 
 class MenuPage:
@@ -86,7 +90,6 @@ class MenuPage:
         self.insert_label = Label(self.insert_frame, text="Number to Insert:")
         self.insert_entry = Entry(self.insert_frame)
         self.insert_button = Button(self.insert_frame, text="Insert", command=self.insert_node)
-        #TODO: grid insert frame
 
         # remove max
         self.remove_max_frame = Frame(self.main_frame)
@@ -102,10 +105,33 @@ class MenuPage:
 
         # build by file
         self.build_frame = Frame(self.main_frame)
-        self.build_button = Button(self.build_button, text="Build Heap by File", command=self.build_heap)
+        self.build_button = Button(self.build_frame, text="Build Heap by File", command=self.build_heap)
 
         # pack all the frames
+        self.size_frame.pack()
+        self.insert_frame.pack()
+        self.remove_max_frame.pack()
+        self.get_max_frame.pack()
+        self.sort_frame.pack()
+        self.build_frame.pack()
 
+    def get_size(self):
+        pass
+
+    def insert_node(self):
+        pass
+
+    def remove_max(self):
+        pass
+
+    def get_max(self):
+        pass
+
+    def sort(self):
+        pass
+
+    def build_heap(self):
+        pass
 
 
 #TODO: status_page? make all above in a notification window?
