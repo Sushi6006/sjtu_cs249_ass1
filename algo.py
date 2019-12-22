@@ -38,13 +38,3 @@ def heap_sort(num_list):
         num_list = heapify(num_list, 0, heap_size)
 
     return num_list
-
-def get_max(num_list):
-    return heapify(num_list, 0, len(num_list))[0]
-
-def remove_max(num_list):
-    return heapify(num_list, 0, len(num_list))[1:]
-
-def insert_into_heap(num_list, user_input):
-    num_list = num_list.append(user_input)
-    return heapify(num_list, 0, len(num_list))
