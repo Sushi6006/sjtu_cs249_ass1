@@ -95,8 +95,12 @@ class ActionPage:
 
         # build by file
         self.build_frame = Frame(self.main_frame)
+        self.build_label = Label(self.build_frame, text="File Name:")
+        self.build_entry = Entry(self.build_frame)
         self.build_button = Button(self.build_frame, text=" Build Heap by File ", command=self.build_heap)
-        self.build_button.pack()
+        self.build_label.grid(row=0, column=0)
+        self.build_entry.grid(row=0, column=1)
+        self.build_button.grid(row=0, column=2)
 
         # back
         self.back_button = Button(self.main_frame, text=" Restart ", command=self.restart)
@@ -129,7 +133,7 @@ class ActionPage:
             if num.isdigit():
                 self.num_list.append(int(num))
 
-        self.num_list = heapify(self.num_list, 0, len(self.num_list))
+        self.num_list = build_heap(self.num_list)
 
         # gui
         self.insert_entry.delete(0, END)  # empty the entry
@@ -139,7 +143,7 @@ class ActionPage:
 
     def remove_max(self):
         if len(self.num_list):
-            self.num_list = heapify(self.num_list, 0, len(self.num_list))
+            self.num_list = build_heap(self.num_list)
             removed_num = self.num_list.pop(0)
             title = "Max Removed"
             msg = f'The number {removed_num} has been removed\nThe new heap is {str(self.num_list)}'
@@ -152,7 +156,7 @@ class ActionPage:
 
         if len(self.num_list):
             title = "Max Found"
-            max_num = heapify(self.num_list, 0, len(self.num_list))[0]
+            max_num = build_heap(self.num_list)[0]
             msg = f'The max number in the heap is {max_num}'
         else:
             title = "Error"
@@ -170,7 +174,26 @@ class ActionPage:
         self.pop_message(title, msg)
 
     def build_heap(self):
-        pass
+        file_name = self.build_entry.get()
+        self.build_entry.delete(0, END)
+        try:  # if file opens, finish the steps
+            with open(file_name, 'r') as f:
+                content = f.read().split()
+
+            # add all the numbers to the list, then heapify it
+            for word in content:
+                if word.isdigit():
+                    self.num_list.append(int(word))
+            self.num_list = build_heap(self.num_list)
+
+            title = "Heap Built"
+            msg = f'Heap has been built successfully from file\nThe new heap is {str(self.num_list)}'
+            self.pop_message(title, msg)
+
+        except:
+            title = "Error"
+            msg = "Unable to read file"
+            self.pop_message(title, msg)
 
     def pop_message(self, title, msg):
         popup = Tk()

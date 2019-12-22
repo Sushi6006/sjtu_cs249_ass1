@@ -17,7 +17,8 @@ def heapify(num_list, i, heap_size):
     return num_list
 
 
-def build_heap(num_list, heap_size):
+def build_heap(num_list):
+    heap_size = len(num_list)
     num_of_parent = heap_size // 2
 
     for i in range(num_of_parent - 1, -1, -1):
@@ -28,7 +29,7 @@ def build_heap(num_list, heap_size):
 
 def heap_sort(num_list):
     heap_size = len(num_list)
-    num_list = build_heap(num_list, heap_size)
+    num_list = build_heap(num_list)
     length = heap_size
 
     for i in range(length - 1, 0, -1):
