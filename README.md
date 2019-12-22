@@ -19,3 +19,6 @@ If an error message appears saying "tkinter package not found", open up the Pyth
 - When the heap is built by file, we read every numbers in the file and ignoring all other characters. Then, all the numbers read will be **added** to the list (instead of replacing the original list)
 - "Remove Max" removes the maximum number *completely and permanently* from the list/heap
 - "Restart" clears all the data and return to main page (welcome page)
+
+#### Conclusion
+We think that we have completed the requirement nicely and completely. All the required functions have been well addressed. Our algorithm is very easy to read in a separated file, and our GUI is very easy to use and understand.
