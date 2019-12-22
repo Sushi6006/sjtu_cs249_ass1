@@ -124,33 +124,49 @@ class ActionPage:
     def insert_node(self):
 
         # algorithmatically insert the number
-        number_to_insert = int(self.insert_entry.get())
-        self.num_list.append(number_to_insert)
+        numbers = self.insert_entry.get().split()  # allows input a list at a time
+        for num in numbers:
+            if num.isdigit():
+                self.num_list.append(int(num))
+
         self.num_list = heapify(self.num_list, 0, len(self.num_list))
 
         # gui
         self.insert_entry.delete(0, END)  # empty the entry
         title = "Insert Successful"
-        msg = f'The number {number_to_insert} has been inserted.\nThe new heap is {str(self.num_list)}'
+        msg = f'The number(s) have been inserted.\nThe new heap is {str(self.num_list)}'
         self.pop_message(title, msg)
 
     def remove_max(self):
-        self.num_list = heapify(self.num_list, 0, len(self.num_list))
-        removed_num = self.num_list.pop(0)
-        title = "Max Removed"
-        msg = f'The number {removed_num} has been removed\nThe new heap is {str(self.num_list)}'
+        if len(self.num_list):
+            self.num_list = heapify(self.num_list, 0, len(self.num_list))
+            removed_num = self.num_list.pop(0)
+            title = "Max Removed"
+            msg = f'The number {removed_num} has been removed\nThe new heap is {str(self.num_list)}'
+        else:
+            title = "Error"
+            msg = "Error: Heap is empty"
         self.pop_message(title, msg)
 
     def get_max(self):  # which does not sort nor heapify the list
-        title = "Max Found"
-        max_num = heapify(self.num_list, 0, len(self.num_list))[0]
-        msg = f'The max number in the heap is {max_num}'
+
+        if len(self.num_list):
+            title = "Max Found"
+            max_num = heapify(self.num_list, 0, len(self.num_list))[0]
+            msg = f'The max number in the heap is {max_num}'
+        else:
+            title = "Error"
+            msg = "Error: Heap is empty"
         self.pop_message(title, msg)
 
     def sort(self):
-        self.num_list = heap_sort(self.num_list)
-        title = "List Sorted"
-        msg = f'The list has been sorted using leap\nThe new list is {self.num_list}'
+        if len(self.num_list):
+            self.num_list = heap_sort(self.num_list)
+            title = "List Sorted"
+            msg = f'The list has been sorted using leap\nThe new list is {self.num_list}'
+        else:
+            title = "Error"
+            msg = "Error: Heap is empty"
         self.pop_message(title, msg)
 
     def build_heap(self):
