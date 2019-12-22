@@ -5,7 +5,7 @@ class GUI:
     WIDTH = 600
     HEIGHT = 400
     TITLE = "THE FULL MARK HEAP SORT"
-    FONT = ("Courier", 40)
+    FONT = ("Courier", 30)
 
     def __init__(self):
 
