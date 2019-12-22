@@ -1,8 +1,6 @@
 from tkinter import *
 from algo import *
 
-#TODO: build heap by file??
-
 class GUI:
     WIDTH = 600
     HEIGHT = 400
@@ -28,8 +26,6 @@ class GUI:
         # mainloop
         self.root.mainloop()
 
-    #TODO: make original page optional?
-    #TODO: a way to unpack whatever is packed?
     def switch_page(self, new_page):
         if self.current_frame:
             self.current_frame.place_forget()
@@ -207,8 +203,5 @@ class ActionPage:
     def restart(self):
         self.num_list = []
         self.gui_object.switch_page(self.gui_object.main_page)
-
-
-#TODO: status_page? make all above in a notification window?
 
 GUI()
