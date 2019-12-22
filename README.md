@@ -10,7 +10,8 @@ Group No.04: Yiwen Zhang 张易文, Kaixi Liu 刘铠溪, Haocheng Zhao 赵浩丞
 - Open Terminal/Command Line
 - Switch to the working directory of this readme file
 - Run `main.py` using Python 3.x
-- If an error message appears saying "tkinter package not found", open up the Python file ('`main.py`') and change the first line from `from tkinter import *` to `from Tkinter import *`
+
+If an error message appears saying "tkinter package not found", open up the Python file ('`main.py`') and change the first line from `from tkinter import *` to `from Tkinter import *`
 
 #### Assumptions & Justifications:
 - Integers are used when inserting to heap and building heap with files
